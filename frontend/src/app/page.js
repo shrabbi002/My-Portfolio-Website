@@ -72,7 +72,7 @@ export default function HomePage() {
                 {hero?.subtitle || 'Software QA Engineer | System Analyst | Data Analyst | Researcher'}
               </p>
               <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-lg">
-                {hero?.introduction || 'A passionate SQA Engineer with 2 years+ professional delivering excellence across software development, quality assurance, business analysis, and AI research.'}
+                {hero?.introduction || 'SQA Engineer with 2+ years of experience in software quality assurance, requirement analysis, and system testing. Actively involved in AI research and development (R&D), focusing on building reliable, data-driven, and high-quality software solutions.'}
               </p>
 
               <div className="flex flex-wrap gap-4 mb-12">
@@ -184,7 +184,7 @@ export default function HomePage() {
               <p className="text-primary-400 font-medium mb-2 uppercase tracking-wider text-sm">About Me</p>
               <h2 className="section-title mb-4">Who I Am</h2>
               <p className="text-white/60 leading-relaxed mb-6">
-                {about?.biography || 'A passionate SQA Engineer with 2 years+ professional delivering excellence across software development, quality assurance, business analysis, and AI research.'}
+                {about?.biography || 'SQA Engineer with 2+ years of experience in software quality assurance, requirement analysis, and system testing. Actively involved in AI research and development (R&D), focusing on building reliable, data-driven, and high-quality software solutions.'}
               </p>
               {about?.expertise?.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-6">
