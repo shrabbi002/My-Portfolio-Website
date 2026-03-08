@@ -200,25 +200,71 @@ export default function HomePage() {
 
       {/* ═══ SKILLS OVERVIEW ═══ */}
       {skills.length > 0 && (
-        <section className="section-padding bg-dark-800/30">
-          <div className="section-container">
+        <section className="section-padding bg-dark-800/30 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary-500/5 via-violet-500/5 to-accent-cyan/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="section-container relative">
             <div className="text-center mb-16">
               <p className="text-primary-400 font-medium mb-2 uppercase tracking-wider text-sm">Expertise</p>
               <h2 className="section-title">Skills & Technologies</h2>
               <p className="section-subtitle mx-auto">A snapshot of my technical competencies</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {skills.map((cat, i) => (
-                <div key={cat._id || i} className="glass-card-hover p-6 text-center group">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{cat.icon || '⚡'}</div>
-                  <h3 className="font-heading font-semibold text-white mb-3">{cat.category}</h3>
-                  <div className="space-y-1">
-                    {cat.skills?.map((s, j) => (
-                      <p key={j} className="text-white/50 text-sm">{s.name}</p>
-                    ))}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {skills.map((cat, i) => {
+                const colors = [
+                  { border: 'border-l-violet-500', bg: 'from-violet-500/10 to-transparent', badge: 'bg-violet-500/15 text-violet-300', dot: 'bg-violet-400' },
+                  { border: 'border-l-cyan-500', bg: 'from-cyan-500/10 to-transparent', badge: 'bg-cyan-500/15 text-cyan-300', dot: 'bg-cyan-400' },
+                  { border: 'border-l-rose-500', bg: 'from-rose-500/10 to-transparent', badge: 'bg-rose-500/15 text-rose-300', dot: 'bg-rose-400' },
+                  { border: 'border-l-amber-500', bg: 'from-amber-500/10 to-transparent', badge: 'bg-amber-500/15 text-amber-300', dot: 'bg-amber-400' },
+                  { border: 'border-l-emerald-500', bg: 'from-emerald-500/10 to-transparent', badge: 'bg-emerald-500/15 text-emerald-300', dot: 'bg-emerald-400' },
+                  { border: 'border-l-blue-500', bg: 'from-blue-500/10 to-transparent', badge: 'bg-blue-500/15 text-blue-300', dot: 'bg-blue-400' },
+                ];
+                const c = colors[i % colors.length];
+
+                return (
+                  <div key={cat._id || i}
+                    className={`glass-card-hover p-0 overflow-hidden group border-l-4 ${c.border}`}
+                    style={{ animationDelay: `${i * 100}ms` }}>
+                    {/* Card header with gradient */}
+                    <div className={`bg-gradient-to-r ${c.bg} px-6 pt-5 pb-4`}>
+                      <div className="flex items-center gap-3">
+                        <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{cat.icon || '⚡'}</span>
+                        <div>
+                          <h3 className="font-heading font-bold text-white text-lg">{cat.category}</h3>
+                          <p className="text-white/40 text-xs">{cat.skills?.length || 0} skills</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Skills list */}
+                    <div className="px-6 py-4">
+                      <div className="flex flex-wrap gap-2">
+                        {cat.skills?.map((s, j) => (
+                          <span key={j}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${c.badge}
+                              hover:scale-105 transition-transform duration-200 cursor-default`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
+                            {s.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
+            </div>
+
+            {/* View all link */}
+            <div className="text-center mt-10">
+              <a href="/skills"
+                className="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 font-medium text-sm transition-colors group">
+                View all skills & proficiency levels
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
