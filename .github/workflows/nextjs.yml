@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
 
     steps:
       - name: Checkout
@@ -22,11 +25,9 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: ./frontend
 
       - name: Build Next.js
         run: npm run build
-        working-directory: ./frontend
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://your-backend.onrender.com/api' }}
 
